@@ -10,7 +10,7 @@ export class CustomersListPage {
     this.lastNameColumn = this.customersTableRows.locator('td').nth(1);
     this.postalCodeColumn = this.customersTableRows.locator('td').nth(2);
     this.accountNumberColumn = this.customersTableRows.locator('td').nth(3); 
-   this.deleteButton = this.page.locator('table tbody tr button');
+    this.deleteButton = this.allTableRows.first().locator('button');
   }
 
   async open() {

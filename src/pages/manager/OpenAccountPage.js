@@ -22,7 +22,7 @@ export class OpenAccountPage {
     await this.currencySelect.selectOption({ label: currency });
   }
   async assertSelectedCurrencyEquals(expectedCurrency) {
-    await expect(this.currencySelect).hasValue(expectedCurrency);
+    await expect(this.currencySelect).toHaveValue(expectedCurrency);
 }
 
   async clickProcess() {
