@@ -3,13 +3,14 @@ import { expect } from '@playwright/test';
 export class TransactionsPage {
   constructor(page) {
     this.page = page;
-    this.tableHeader = page.getByRole('row').first();
-    this.headerFirstCell = this.tableHeader.getByRole('cell').nth(0);
-    this.headerSecondCell = this.tableHeader.getByRole('cell').nth(1);
-    this.headerThirdCell = this.tableHeader.getByRole('cell').nth(2);
-    this.firstRow = page.getByRole('row').nth(1);
-    this.firstRowAmountCell = this.firstRow.getByRole('cell').nth(1);
-    this.firstRowTypeCell = this.firstRow.getByRole('cell').nth(2);
+this.tableHeader = page.locator('table thead tr').first();
+    this.headerFirstCell = this.tableHeader.locator('td, th').nth(0);
+    this.headerSecondCell = this.tableHeader.locator('td, th').nth(1);
+    this.headerThirdCell = this.tableHeader.locator('td, th').nth(2);
+    this.tableRows = page.locator('table tbody tr');
+    this.firstRow = this.tableRows.first();
+    this.firstRowAmountCell = this.firstRow.locator('td').nth(1);
+    this.firstRowTypeCell = this.firstRow.locator('td').nth(2);
   }
 
   async open() {
@@ -20,6 +21,7 @@ export class TransactionsPage {
   }
 
   async assertFirstRowAmountContainsText(amount) {
+    await this.firstRowAmountCell.waitFor({ state: 'visible' });
     await expect(this.firstRowAmountCell).toContainText(amount);
   }
 

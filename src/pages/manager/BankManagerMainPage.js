@@ -1,6 +1,5 @@
-import { expect } from '@playwright/test';
-
 export class BankManagerMainPage {
+  
   constructor(page) {
     this.page = page;
     this.addCustomerButton = page.getByRole('button', {
